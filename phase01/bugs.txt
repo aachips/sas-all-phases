@@ -1,0 +1,1 @@
+There is one bug in Phase01. It may have everything to do with my local computer and not with the code itself. When I open the View hyperlinks it says 'forbidden: not allowed to access' error. When I type the link in manually it works fine. Rubber Duck says it may have to do with an .htaccess file present and the settings on it. 
