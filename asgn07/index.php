@@ -1,33 +1,19 @@
 <?php
     include 'functions/utility-functions.php';
+    include 'functions/names-functions.php';
     $fileName = 'names-short-list.txt';
+    $fullNames = load_full_names($fileName);
     $lineNumber = 0;
-
-    // Load up the array
-    $FH = fopen("$fileName", "r");
-    $nextName = fgets($FH);
-
-    while(!feof($FH)) {
-        if($lineNumber % 2 == 0) 
-            $fullNames[] = trim(substr($nextName, 0, strpos($nextName, " --")));
-        $lineNumber++;
-        $nextName = fgets($FH);
-    }
-
     
-
-    // $findMe = ',';
-    // echo $fullNames[0] . '<br>';
-    // echo strpos($fullNames[0], $findMe) . '<br>';
-    // echo substr($fullNames[0], 0, strpos($fullNames[0], $findMe));
-    // exit();
-
+    $firstNames = load_first_names($fullNames);
+    $lastNames = load_last_names($fullNames);
+    // Load up the array
     // Get all first names
     foreach($fullNames as $fullName) {
         $startHere = strpos($fullName, ",") + 1;
         $firstNames[] = trim(substr($fullName, $startHere));
     }
-
+    
     dd($firstNames);
 
     // Get all last names
@@ -47,6 +33,28 @@
             $validFullNames[$i] = $validLastNames[$i] . ", " . $validFirstNames[$i];
         }
     }
+    
+
+    $FH = fopen("$fileName", "r");
+    $nextName = fgets($FH);
+
+    while(!feof($FH)) {
+        if($lineNumber % 2 == 0) 
+            $fullNames[] = trim(substr($nextName, 0, strpos($nextName, " --")));
+        $lineNumber++;
+        $nextName = fgets($FH);
+    }
+
+    
+
+    // $findMe = ',';
+    // echo $fullNames[0] . '<br>';
+    // echo strpos($fullNames[0], $findMe) . '<br>';
+    // echo substr($fullNames[0], 0, strpos($fullNames[0], $findMe));
+    // exit();
+
+
+
 
     // ~~~~~~~~~~~~ Display results ~~~~~~~~~~~~ //
 
